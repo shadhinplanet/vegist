@@ -1,3 +1,4 @@
+@props(['sliders'])
 <!--home page slider start-->
 <section class="slider">
     <div class="home-slider owl-carousel owl-theme">
