@@ -1,49 +1,50 @@
 @extends('backend.layouts.app')
 
-@section('title', 'Slider')
-@section('page-title', 'Slider')
+@section('title', 'Category')
+@section('page-title', 'Category')
 
 @section('content')
 
     <section class="bg-white p-4">
         <div class="text-end">
             <!-- Base Buttons -->
-            <a href="{{ route('slider.create') }}" class="btn btn-primary waves-effect waves-light">Create</a>
+            <a href="{{ route('category.create') }}" class="btn btn-primary waves-effect waves-light">Create</a>
         </div>
         <!-- Striped Rows -->
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">BG</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Alignment</th>
+                    <th scope="col">Thumb</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Slug</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
 
-                @forelse ($sliders as $key => $slider)
+                @forelse ($categories as $key => $category)
                     <tr>
-                        <th scope="row"> {{ $sliders->perPage() * ($sliders->currentPage() - 1) + ++$key }}</th>
+                        <th scope="row"> {{ $categories->perPage() * ($categories->currentPage() - 1) + ++$key }}</th>
                         <td>
                             <!-- Rounded Image -->
-<img class="rounded shadow" alt="" width="200" src="{{ getAssetUrl($slider->background) }}">
-                     
+                            <img class="rounded shadow" alt="" width="200"
+                                src="{{ getAssetUrl($category->thumbnail) }}">
+
                         </td>
-                        <td>{{ $slider->title }}</td>
-                        <td class="text-capitalize">{{ $slider->alignment }}</td>
+                        <td>{{ $category->name }}</td>
+                        <td class="">{{ $category->slug }}</td>
                         <td>
                             <div class="hstack gap-3 flex-wrap">
-                                <a href="{{ route('slider.edit', $slider->id) }}" class="link-success fs-15"><i
+                                <a href="{{ route('category.edit', $category->id) }}" class="link-success fs-15"><i
                                         class="ri-edit-2-line"></i></a>
 
-                                <a href="javascript::void(0)" onclick="deleteRecord({{ $slider->id }})"
+                                <a href="javascript::void(0)" onclick="deleteRecord({{ $category->id }})"
                                     class="link-danger fs-15"><i class="ri-delete-bin-line"></i></a>
 
 
-                                <form id="delete-form-{{ $slider->id }}"
-                                    action="{{ route('slider.delete', $slider->id) }}" method="POST"
+                                <form id="delete-form-{{ $category->id }}"
+                                    action="{{ route('category.delete', $category->id) }}" method="POST"
                                     style="display: none">
                                     @csrf
                                     @method('DELETE')
@@ -55,7 +56,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="4">No Slider Found!</td>
+                        <td colspan="4">No Category Found!</td>
                     </tr>
                 @endforelse
 

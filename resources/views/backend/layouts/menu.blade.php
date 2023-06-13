@@ -78,6 +78,7 @@
                     </a>
                 </li>
 
+                {{-- Slider --}}
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarSlider" data-bs-toggle="collapse"
                         role="button" aria-expanded="false" aria-controls="sidebarSlider">
@@ -96,12 +97,25 @@
                         </ul>
                     </div>
                 </li> 
-                {{-- <li class="nav-item">
-                    <a class="nav-link menu-link {{ request()->routeIs('slider.*') ? 'active' : '' }}" href="{{ route('slider.index') }}">
-                        <i class="mdi mdi-puzzle-outline"></i> <span>Slider</span>
+                {{-- Category --}}
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarCatrgory" data-bs-toggle="collapse"
+                        role="button" aria-expanded="false" aria-controls="sidebarCatrgory">
+                        <i class="mdi mdi-speedometer"></i> <span data-key="t-dashboards">Catrgory</span>
                     </a>
-                </li> --}}
-
+                    <div class="collapse menu-dropdown {{ request()->routeIs('category.*') ? 'show' : '' }}" id="sidebarCatrgory">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('category.index') }}" class="nav-link {{ request()->routeIs('category.index') ? 'active' : '' }}" data-key="t-analytics">
+                                    View All </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('category.create') }}" class="nav-link {{ request()->routeIs('category.create') ? 'active' : '' }}" data-key="t-crm"> Create </a>
+                            </li>
+                           
+                        </ul>
+                    </div>
+                </li> 
                
             </ul>
         </div>

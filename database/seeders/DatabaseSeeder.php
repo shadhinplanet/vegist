@@ -19,5 +19,10 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@vegist.test',
             'password' => bcrypt('123')
         ]);
+
+        \App\Models\Category::factory(10)->create();
+
+        $this->call(SliderSeeder::class);
+
     }
 }
