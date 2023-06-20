@@ -71,37 +71,49 @@ class ProductController extends Controller
     // Edit slider
     public function edit(Request $request, $id)
     {
-        $category = Product::findOrFail($id);
-
+        $product = Product::findOrFail($id);
         if ($request->isMethod('PUT')) {
+     
             $request->validate([
-                'name' => 'required|string|max:255',
-                'slug'   => 'nullable|string|max:255',
-                'thumbnail' => 'nullable',
+                'title'        => 'required|string|max:255',
+                'slug'        => 'required|string|max:255',
+                'price'       => 'required|numeric',
+                'category_id' => 'required|not_in:none',
+                'excerpt'     => 'nullable',
+                'description' => 'nullable',
+                'gallery' => 'nullable',
+            ]);
+      
+            $product->update([
+                'title' => $request->title,
+                'slug' => $request->slug,
+                'price' => $request->price,
+                'excerpt' => $request->excerpt,
+                'description' => $request->description,
+                'category_id' => $request->category_id,
             ]);
 
-            $thumb = $category->thumbnail;
+            // Gallery
+            if(!empty($request->file('gallery'))){
+                foreach ($request->file('gallery') as $image) {
+                    
+                    $thumb = time() . '-' . str_replace(' ', '--', $image->getClientOriginalName());
+                    // Store the image
+                    $image->storeAs('/products', $thumb);
 
-            if (!empty($request->file('thumbnail'))) {
-                Storage::delete('/' . $thumb);
-                $thumb = time() . '-' . str_replace(' ', '--', $request->file('thumbnail')->getClientOriginalName());
-                // Store the thumbnail
-                $request->file('thumbnail')->storeAs('/', $thumb);
+                    Gallery::create([
+                        'name' => $thumb,
+                        'product_id' => $product->id
+                    ]);
+
+                }
             }
-
-            // Product Update
-            $category->update([
-                'name'      => $request->name,
-                'slug'   => $request->slug,
-                'thumbnail' => $thumb,
-            ]);
 
             // Return
             return redirect()->back()->with('success', 'Product Updated Successfully');
         }
-
-
-        return view('backend.product.edit', compact('category'));
+        $categories = Category::get(['id', 'name']);
+        return view('backend.product.edit', compact('categories', 'product'));
     }
 
 

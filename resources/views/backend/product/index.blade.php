@@ -30,7 +30,7 @@
                         <td>
                             <!-- Rounded Image -->
                             <img class="rounded shadow" alt="" width="200"
-                                src="{{ getAssetUrl($product->gallery[0]->name, '/uploads/products') }}">
+                                src="{{ count($product->gallery) > 0 ? getAssetUrl($product->gallery[0]->name, '/uploads/products') : '' }}">
                         </td>
                         <td>{{ $product->title }}</td>
                         <td class="">{{ $product->slug }}</td>

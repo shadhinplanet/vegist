@@ -23,8 +23,37 @@
     <link href="{{ asset('backend') }}/assets/css/custom.min.css" rel="stylesheet" type="text/css" />
     <link href="{{ asset('backend') }}/assets/css/custom.css" rel="stylesheet" type="text/css" />
 
+    <!-- Filepond stylesheet -->
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+        rel="stylesheet" />
+
+
     <script src="{{ asset('backend/assets/js/jquery.min.js') }}"></script>
-    
+
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+    <!-- include FilePond library -->
+    <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
+
+    <!-- include FilePond jQuery adapter -->
+    <script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
+
+    <script>
+        $(function() {
+
+            // Turn input element into a pond
+            $('.filepond').filepond();
+
+        });
+
+        // Register the plugin
+        FilePond.registerPlugin(FilePondPluginImagePreview);
+        FilePond.registerPlugin(FilePondPluginFileValidateType);
+        // ... FilePond initialisation code here
+    </script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

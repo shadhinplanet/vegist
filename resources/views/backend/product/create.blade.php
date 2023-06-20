@@ -47,7 +47,7 @@
                     <!-- Basic Input -->
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
-                        <x-tinymce-editor name="description" class="form-control"/>
+                        <x-tinymce-editor name="description" />
                         @error('description')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
@@ -84,7 +84,7 @@
                     <!-- Default File Input Example -->
                     <div class="mb-3">
                         <label for="gallery" class="form-label">Gallery</label>
-                        <input class="form-control" type="file" id="gallery" name="gallery[]" multiple>
+                        <input class="form-control filepond" type="file" id="gallery" name="gallery[]" multiple accept="image/png, image/jpeg, image/gif">
                         @error('gallery')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
@@ -107,7 +107,6 @@
 
 @push('js')
     <script>
-
         $(document).ready(function() {
 
             $('input#title').keyup(function() {
@@ -115,5 +114,6 @@
                 $('input#slug').val(val.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, ""));
             });
         });
+
     </script>
 @endpush
