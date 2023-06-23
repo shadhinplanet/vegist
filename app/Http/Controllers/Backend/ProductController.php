@@ -23,9 +23,7 @@ class ProductController extends Controller
     // Create a new Product
     public function create(Request $request)
     {
-        
         if ($request->isMethod('POST')) {
-     
             $request->validate([
                 'title'        => 'required|string|max:255',
                 'slug'        => 'required|string|max:255',

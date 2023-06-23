@@ -30,6 +30,10 @@
     <!-- style -->
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend') }}/css/style.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend') }}/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend') }}/custom.css">
+
+    @stack('css')
+
 </head>
 
 <body class="home-1">
@@ -615,6 +619,8 @@
     <a href="javascript:void(0)" class="scroll" id="top">
         <span><i class="fa fa-angle-double-up"></i></span>
     </a>
+
+    
     <!-- back to top end -->
     <div class="mm-fullscreen-bg"></div>
     <!-- jquery -->
@@ -632,6 +638,10 @@
     <script src="{{ asset('frontend') }}/js/swiper.min.js"></script>
     <!-- custom -->
     <script src="{{ asset('frontend') }}/js/custom.js"></script>
+
+
+    @stack('js')
+
 </body>
 
 </html>

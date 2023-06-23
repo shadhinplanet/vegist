@@ -13,89 +13,17 @@
                             <div class="megamenu-content">
                                 <div class="mainwrap">
                                     <ul class="main-menu">
-                                        <li class="menu-link parent">
-                                            <a href="index1.html" class="link-title">
+                                        <li class="menu-link">
+                                            <a href="{{ route('front.home') }}" class="link-title {{ request()->routeIs('front.home') ? 'active' : '' }}">
                                                 <span class="sp-link-title">Home</span>
-                                                <i class="fa fa-angle-down"></i>
                                             </a>
-                                            <a href="#collapse-home" data-bs-toggle="collapse"
-                                                class="link-title link-title-lg">
-                                                <span class="sp-link-title">Home</span>
-                                                <i class="fa fa-angle-down"></i>
-                                            </a>
-                                            <ul class="dropdown-submenu sub-menu collapse"
-                                                id="collapse-home">
-                                                <li class="submenu-li">
-                                                    <a href="index1.html" class="submenu-link">Vegist home
-                                                        01</a>
-                                                </li>
-                                                <li class="submenu-li">
-                                                    <a href="https://spacingtech.com/html/vegist-final/vegist-rtl/index1.html"
-                                                        class="submenu-link">Vegist home 01 (RTL)</a>
-                                                </li>
-                                                <li class="submenu-li">
-                                                    <a href="https://spacingtech.com/html/vegist-final/vegist-box/index1.html"
-                                                        class="submenu-link">Vegist home 01 (BOX)</a>
-                                                </li>
-                                                <li class="submenu-li">
-                                                    <a href="index2.html" class="submenu-link">Vegist home
-                                                        02</a>
-                                                </li>
-                                                <li class="submenu-li">
-                                                    <a href="index3.html" class="submenu-link">Vegist home
-                                                        03</a>
-                                                </li>
-                                                <li class="submenu-li">
-                                                    <a href="index4.html" class="submenu-link">Vegist home
-                                                        04</a>
-                                                </li>
-                                                <li class="submenu-li">
-                                                    <a href="index5.html" class="submenu-link">Vegist home
-                                                        05</a>
-                                                </li>
-                                                <li class="submenu-li">
-                                                    <a href="index6.html" class="submenu-link">Vegist home
-                                                        06</a>
-                                                </li>
-                                                <li class="submenu-li">
-                                                    <a href="index7.html" class="submenu-link">Vegist home
-                                                        07</a>
-                                                </li>
-                                                <li class="submenu-li">
-                                                    <a href="index8.html" class="submenu-link">Vegist home
-                                                        08</a>
-                                                </li>
-                                                <li class="submenu-li">
-                                                    <a href="index9.html" class="submenu-link">Vegist home
-                                                        09</a>
-                                                </li>
-                                                <li class="submenu-li">
-                                                    <a href="index10.html" class="submenu-link">Vegist
-                                                        home 10</a>
-                                                </li>
-                                                <li class="submenu-li">
-                                                    <a href="index11.html" class="submenu-link">Vegist
-                                                        home 11</a>
-                                                </li>
-                                                <li class="submenu-li">
-                                                    <a href="index12.html" class="submenu-link">Vegist
-                                                        home 12</a>
-                                                </li>
-                                                <li class="submenu-li">
-                                                    <a href="index13.html" class="submenu-link">Vegist
-                                                        home 13</a>
-                                                </li>
-                                                <li class="submenu-li">
-                                                    <a href="index14.html" class="submenu-link">Vegist
-                                                        home 14</a>
-                                                </li>
-                                                <li class="submenu-li">
-                                                    <a href="index15.html" class="submenu-link">Vegist
-                                                        home 15</a>
-                                                </li>
-                                            </ul>
                                         </li>
-                                        <li class="menu-link parent">
+                                        <li class="menu-link">
+                                            <a href="{{ route('front.shop') }}" class="link-title {{ request()->routeIs('front.shop') ? 'active' : '' }}">
+                                                <span class="sp-link-title">Shop</span>
+                                            </a>
+                                        </li>
+                                        {{-- <li class="menu-link parent">
                                             <a href="javascript:void(0)" class="link-title">
                                                 <span class="sp-link-title">Shop</span>
                                                 <i class="fa fa-angle-down"></i>
@@ -968,7 +896,7 @@
                                                 <span class="sp-link-title">Buy vegist <span
                                                         class="hot">Hot</span></span>
                                             </a>
-                                        </li>
+                                        </li> --}}
                                     </ul>
                                 </div>
                             </div>

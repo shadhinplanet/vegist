@@ -7,11 +7,13 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Frontend\HomepageController;
-
+use App\Http\Controllers\Frontend\PageController;
 
 // frontend routes
 Route::as('front.')->group(function () {
-    Route::get('/', [HomepageController::class, 'index'])->name('home');
+    Route::get('/', [PageController::class, 'home'])->name('home');
+    Route::get('shop', [PageController::class, 'shop'])->name('shop');
+    Route::get('product/{slug}', [PageController::class, 'singleProduct'])->name('shop.single');
 });
 
 
