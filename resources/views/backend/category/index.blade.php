@@ -18,6 +18,7 @@
                     <th scope="col">Thumb</th>
                     <th scope="col">Name</th>
                     <th scope="col">Slug</th>
+                    <th scope="col">Products</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -28,12 +29,14 @@
                         <th scope="row"> {{ $categories->perPage() * ($categories->currentPage() - 1) + ++$key }}</th>
                         <td>
                             <!-- Rounded Image -->
-                            <img class="rounded shadow" alt="" width="200"
+                            <img class="rounded shadow" alt="" width="80"
                                 src="{{ getAssetUrl($category->thumbnail) }}">
 
                         </td>
                         <td>{{ $category->name }}</td>
                         <td class="">{{ $category->slug }}</td>
+                        <td class=""><span class="badge rounded-pill bg-primary">{{ count($category->products) }}</span>
+                            </td>
                         <td>
                             <div class="hstack gap-3 flex-wrap">
                                 <a href="{{ route('category.edit', $category->id) }}" class="link-success fs-15"><i

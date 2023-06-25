@@ -5,9 +5,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- title -->
     <title>@yield('title')</title>
-    
+
     <!-- favicon -->
     <link rel="shortcut icon" type="image/favicon" href="{{ asset('frontend') }}/image/fevicon.png">
     <!-- bootstrap -->
@@ -49,55 +51,64 @@
                                 <span class="currency-head">currency:</span>
                                 <div class="currency-drop">
                                     <div class="eur">
-                                        <img class="img-fluid" src="{{ asset('frontend') }}/image/c-icon1.png" alt="">
+                                        <img class="img-fluid" src="{{ asset('frontend') }}/image/c-icon1.png"
+                                            alt="">
                                         <span class="cur-name">EUR</span>
                                     </div>
                                     <ul class="all-currency">
                                         <li>
                                             <a href="javascript:void(0)">
-                                                <img class="img-fluid" src="{{ asset('frontend') }}/image/c-icon4.png" alt="">
+                                                <img class="img-fluid" src="{{ asset('frontend') }}/image/c-icon4.png"
+                                                    alt="">
                                                 <span class="cur-name">AFN</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="javascript:void(0)">
-                                                <img class="img-fluid" src="{{ asset('frontend') }}/image/c-icon2.png" alt="">
+                                                <img class="img-fluid" src="{{ asset('frontend') }}/image/c-icon2.png"
+                                                    alt="">
                                                 <span class="cur-name">BDT</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="javascript:void(0)">
-                                                <img class="img-fluid" src="{{ asset('frontend') }}/image/c-icon3.png" alt="">
+                                                <img class="img-fluid" src="{{ asset('frontend') }}/image/c-icon3.png"
+                                                    alt="">
                                                 <span class="cur-name">CAD</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="javascript:void(0)">
-                                                <img class="img-fluid" src="{{ asset('frontend') }}/image/c-icon1.png" alt="">
+                                                <img class="img-fluid" src="{{ asset('frontend') }}/image/c-icon1.png"
+                                                    alt="">
                                                 <span class="cur-name">EUR</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="javascript:void(0)">
-                                                <img class="img-fluid" src="{{ asset('frontend') }}/image/c-icon5.png" alt="">
+                                                <img class="img-fluid" src="{{ asset('frontend') }}/image/c-icon5.png"
+                                                    alt="">
                                                 <span class="cur-name">GBP</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="javascript:void(0)">
-                                                <img class="img-fluid" src="{{ asset('frontend') }}/image/c-icon6.png" alt="">
+                                                <img class="img-fluid" src="{{ asset('frontend') }}/image/c-icon6.png"
+                                                    alt="">
                                                 <span class="cur-name">INR</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="javascript:void(0)">
-                                                <img class="img-fluid" src="{{ asset('frontend') }}/image/c-icon7.png" alt="">
+                                                <img class="img-fluid" src="{{ asset('frontend') }}/image/c-icon7.png"
+                                                    alt="">
                                                 <span class="cur-name">SAR</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="javascript:void(0)">
-                                                <img class="img-fluid" src="{{ asset('frontend') }}/image/c-icon8.png" alt="">
+                                                <img class="img-fluid" src="{{ asset('frontend') }}/image/c-icon8.png"
+                                                    alt="">
                                                 <span class="cur-name">USD</span>
                                             </a>
                                         </li>
@@ -153,7 +164,8 @@
                             <!-- logo start -->
                             <div class="header-element logo">
                                 <a href="index1.html">
-                                    <img src="{{ asset('frontend') }}/image/logo1.png" alt="logo-image" class="img-fluid">
+                                    <img src="{{ asset('frontend') }}/image/logo1.png" alt="logo-image"
+                                        class="img-fluid">
                                 </a>
                             </div>
                             <!-- logo end -->
@@ -202,6 +214,7 @@
                                     <li class="side-wrap cart-wrap">
                                         <div class="shopping-widget">
                                             <div class="shopping-cart">
+                                               
                                                 <a href="javascript:void(0)" class="cart-count">
                                                     <span class="cart-icon-wrap">
                                                         <span class="cart-icon"><i class="icon-handbag"></i></span>
@@ -233,7 +246,8 @@
                 <li class="cart-item">
                     <div class="cart-img">
                         <a href="product.html">
-                            <img src="{{ asset('frontend') }}/image/cart-img.jpg" alt="cart-image" class="img-fluid">
+                            <img src="{{ asset('frontend') }}/image/cart-img.jpg" alt="cart-image"
+                                class="img-fluid">
                         </a>
                     </div>
                     <div class="cart-title">
@@ -252,7 +266,8 @@
                 <li class="cart-item">
                     <div class="cart-img">
                         <a href="product.html">
-                            <img src="{{ asset('frontend') }}/image/cart-img02.jpg" alt="cart-image" class="img-fluid">
+                            <img src="{{ asset('frontend') }}/image/cart-img02.jpg" alt="cart-image"
+                                class="img-fluid">
                         </a>
                     </div>
                     <div class="cart-title">
@@ -271,7 +286,8 @@
                 <li class="cart-item">
                     <div class="cart-img">
                         <a href="product.html">
-                            <img src="{{ asset('frontend') }}/image/cart-img03.jpg" alt="cart-image" class="img-fluid">
+                            <img src="{{ asset('frontend') }}/image/cart-img03.jpg" alt="cart-image"
+                                class="img-fluid">
                         </a>
                     </div>
                     <div class="cart-title">
@@ -290,7 +306,8 @@
                 <li class="cart-item">
                     <div class="cart-img">
                         <a href="product.html">
-                            <img src="{{ asset('frontend') }}/image/cart-img04.jpg" alt="cart-image" class="img-fluid">
+                            <img src="{{ asset('frontend') }}/image/cart-img04.jpg" alt="cart-image"
+                                class="img-fluid">
                         </a>
                     </div>
                     <div class="cart-title">
@@ -330,7 +347,8 @@
     @yield('content')
     <!-- News Letter start -->
     <section class="news-letter1">
-        <div class="section-tb-padding news-img" style="background-image: url({{ asset('frontend') }}/image/banner3.jpg);">
+        <div class="section-tb-padding news-img"
+            style="background-image: url({{ asset('frontend') }}/image/banner3.jpg);">
             <div class="container">
                 <div class="row">
                     <div class="col">
@@ -358,56 +376,64 @@
                         <div class="items">
                             <div class="brand-img">
                                 <a href="javascript:void(0)">
-                                    <img src="{{ asset('frontend') }}/image/brand/home-123/l1.png" alt="home brand" class="img-fluid">
+                                    <img src="{{ asset('frontend') }}/image/brand/home-123/l1.png" alt="home brand"
+                                        class="img-fluid">
                                 </a>
                             </div>
                         </div>
                         <div class="items">
                             <div class="brand-img">
                                 <a href="javascript:void(0)">
-                                    <img src="{{ asset('frontend') }}/image/brand/home-123/l2.png" alt="home brand" class="img-fluid">
+                                    <img src="{{ asset('frontend') }}/image/brand/home-123/l2.png" alt="home brand"
+                                        class="img-fluid">
                                 </a>
                             </div>
                         </div>
                         <div class="items">
                             <div class="brand-img">
                                 <a href="javascript:void(0)">
-                                    <img src="{{ asset('frontend') }}/image/brand/home-123/l3.png" alt="home brand" class="img-fluid">
+                                    <img src="{{ asset('frontend') }}/image/brand/home-123/l3.png" alt="home brand"
+                                        class="img-fluid">
                                 </a>
                             </div>
                         </div>
                         <div class="items">
                             <div class="brand-img">
                                 <a href="javascript:void(0)">
-                                    <img src="{{ asset('frontend') }}/image/brand/home-123/l4.png" alt="home brand" class="img-fluid">
+                                    <img src="{{ asset('frontend') }}/image/brand/home-123/l4.png" alt="home brand"
+                                        class="img-fluid">
                                 </a>
                             </div>
                         </div>
                         <div class="items">
                             <div class="brand-img">
                                 <a href="javascript:void(0)">
-                                    <img src="{{ asset('frontend') }}/image/brand/home-123/l5.png" alt="home brand" class="img-fluid">
+                                    <img src="{{ asset('frontend') }}/image/brand/home-123/l5.png" alt="home brand"
+                                        class="img-fluid">
                                 </a>
                             </div>
                         </div>
                         <div class="items">
                             <div class="brand-img">
                                 <a href="javascript:void(0)">
-                                    <img src="{{ asset('frontend') }}/image/brand/home-123/l6.png" alt="home brand" class="img-fluid">
+                                    <img src="{{ asset('frontend') }}/image/brand/home-123/l6.png" alt="home brand"
+                                        class="img-fluid">
                                 </a>
                             </div>
                         </div>
                         <div class="items">
                             <div class="brand-img">
                                 <a href="javascript:void(0)">
-                                    <img src="{{ asset('frontend') }}/image/brand/home-123/l7.png" alt="home brand" class="img-fluid">
+                                    <img src="{{ asset('frontend') }}/image/brand/home-123/l7.png" alt="home brand"
+                                        class="img-fluid">
                                 </a>
                             </div>
                         </div>
                         <div class="items">
                             <div class="brand-img">
                                 <a href="javascript:void(0)">
-                                    <img src="{{ asset('frontend') }}/image/brand/home-123/l8.png" alt="home brand" class="img-fluid">
+                                    <img src="{{ asset('frontend') }}/image/brand/home-123/l8.png" alt="home brand"
+                                        class="img-fluid">
                                 </a>
                             </div>
                         </div>
@@ -446,7 +472,8 @@
                         <ul class="footer-ul">
                             <li class="footer-li footer-logo">
                                 <a href="index1.html">
-                                    <img class="img-fluid" src="{{ asset('frontend') }}/image/logo1.png" alt="">
+                                    <img class="img-fluid" src="{{ asset('frontend') }}/image/logo1.png"
+                                        alt="">
                                 </a>
                             </li>
                             <li class="footer-li footer-address">
@@ -563,8 +590,7 @@
                             <p>Copyright <i class="fa fa-copyright"></i> 2023 spacingtech</p>
                         </li>
                         <li class="f-c f-social">
-                            <a href="https://www.whatsapp.com/" class="f-icn-link"><i
-                                    class="fa fa-whatsapp"></i></a>
+                            <a href="https://www.whatsapp.com/" class="f-icn-link"><i class="fa fa-whatsapp"></i></a>
                             <a href="https://www.facebook.com/" class="f-icn-link"><i
                                     class="fa fa-facebook-f"></i></a>
                             <a href="https://twitter.com/" class="f-icn-link"><i class="fa fa-twitter"></i></a>
@@ -572,12 +598,11 @@
                                     class="fa fa-instagram"></i></a>
                             <a href="https://www.pinterest.com/" class="f-icn-link"><i
                                     class="fa fa-pinterest-p"></i></a>
-                            <a href="https://www.youtube.com/" class="f-icn-link"><i
-                                    class="fa fa-youtube"></i></a>
+                            <a href="https://www.youtube.com/" class="f-icn-link"><i class="fa fa-youtube"></i></a>
                         </li>
                         <li class="f-c f-payment">
-                            <a href="checkout-1.html"><img src="{{ asset('frontend') }}/image/payment.png" class="img-fluid"
-                                    alt="payment image"></a>
+                            <a href="checkout-1.html"><img src="{{ asset('frontend') }}/image/payment.png"
+                                    class="img-fluid" alt="payment image"></a>
                         </li>
                     </ul>
                 </div>
@@ -620,7 +645,7 @@
         <span><i class="fa fa-angle-double-up"></i></span>
     </a>
 
-    
+
     <!-- back to top end -->
     <div class="mm-fullscreen-bg"></div>
     <!-- jquery -->
@@ -639,6 +664,15 @@
     <!-- custom -->
     <script src="{{ asset('frontend') }}/js/custom.js"></script>
 
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        });
+    </script>
 
     @stack('js')
 

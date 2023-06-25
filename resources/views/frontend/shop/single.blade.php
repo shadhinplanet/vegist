@@ -40,7 +40,7 @@
 
                             </ul>
                         </div>
-                        <div class="col-xl-7 col-lg-6 col-md-6 col-12 pro-info">
+                        <div class="col-xl-7 col-lg-6 col-md-6 col-12 pro-info product_data">
                             <h4>{{ $product->title }}</h4>
                             <div class="rating">
                                 <i class="fa fa-star d-star"></i>
@@ -80,14 +80,16 @@
                                 <div class="plus-minus">
                                     <span>
                                         <a href="javascript:void(0)" class="minus-btn text-black">-</a>
-                                        <input type="text" name="quantity" value="1">
+                                        <input type="text" name="quantity" class="quantity" value="1">
                                         <a href="javascript:void(0)" class="plus-btn text-black">+</a>
                                     </span>
                                 </div>
                             </div>
                             <div class="pro-btn">
+                                <input type="hidden" class="product_id" name="product_id" value="{{ $product->id }}">
                                 <a href="wishlist.html" class="btn btn-style1"><span><i class="fa fa-heart"></i></span></a>
-                                <a href="cart.html" class="btn btn-style1"><span><i class="fa fa-shopping-bag"></i> Add
+                                <a href="javascript::void(0)" class="btn btn-style1 add-to-cart-btn"><span><i
+                                            class="fa fa-shopping-bag"></i> Add
                                         to cart</span></a>
                                 <a href="checkout-1.html" class="btn btn-style1"><span>Buy now</span></a>
                             </div>
@@ -102,7 +104,8 @@
                             </div>
                             <div class="pay-img">
                                 <a href="checkout-1.html">
-                                    <img src="{{ asset('frontend/image/pay-image.jpg') }}" class="img-fluid" alt="pay-image">
+                                    <img src="{{ asset('frontend/image/pay-image.jpg') }}" class="img-fluid"
+                                        alt="pay-image">
                                 </a>
                             </div>
                         </div>
@@ -128,8 +131,8 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="tab-1">
-                                   {!! $product->description !!}
-                           
+                                {!! $product->description !!}
+
                             </div>
                             <div class="tab-pane fade show" id="tab-2">
                                 <h4 class="reviews-title">Customer reviews</h4>
@@ -194,7 +197,7 @@
                                     </p>
                                 </div>
                             </div>
-                           
+
                         </div>
                     </div>
                 </div>
@@ -213,14 +216,50 @@
                         <h2><span>Related Product</span></h2>
                     </div>
                     <div class="releted-products owl-carousel owl-theme">
-                        
-                        @foreach ($product->category->products as $product)
-                        <div class="items">
-                            <x-frontend.product-item :product="$product" />
-                        </div>
+                        @foreach ($product->category->products as $item)
+                            @if ($product->id != $item->id)
+                                <div class="items">
+                                    <div class="tred-pro">
+                                        <div class="tr-pro-img">
+                                            <a href="{{ route('front.shop.single', $item->slug) }}">
+                                                <img class="img-fluid"
+                                                    src="{{ count($item->gallery) > 0 ? getAssetUrl($item->gallery[0]->name, 'uploads/products') : '' }}"
+                                                    alt="{{ $item->title }}">
+                                                <img class="img-fluid additional-image"
+                                                    src="{{ count($item->gallery) > 1 ? getAssetUrl($item->gallery[1]->name, 'uploads/products') : '' }}"
+                                                    alt="{{ $item->title }}">
+                                            </a>
+                                        </div>
+                                        {!! productLabel($item) !!}
+                                        <div class="pro-icn">
+                                            <a href="wishlist.html" class="w-c-q-icn"><i class="fa fa-heart"></i></a>
+                                            <a href="cart.html" class="w-c-q-icn"><i class="fa fa-shopping-bag"></i></a>
+                                            <a href="javascript:void(0)" class="w-c-q-icn" data-bs-toggle="modal"
+                                                data-bs-target="#product-{{ $item->id }}-Modal"><i
+                                                    class="fa fa-eye"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="caption">
+                                        <h3><a
+                                                href="{{ route('front.shop.single', $item->slug) }}">{{ $item->title }}</a>
+                                        </h3>
+                                        <div class="rating">
+                                            <i class="fa fa-star c-star"></i>
+                                            <i class="fa fa-star c-star"></i>
+                                            <i class="fa fa-star c-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </div>
+                                        <div class="pro-price">
+                                            <span class="new-price">${{ number_format($item->price, 2) }} USD</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            @endif
                         @endforeach
-                       
-                        
+
+
                     </div>
                 </div>
             </div>
@@ -240,33 +279,44 @@
             y = offsetY / zoomer.offsetHeight * 100
             zoomer.style.backgroundPosition = x + '% ' + y + '%';
         }
+
+
+        $(document).ready(function() {
+            cartload();
+            // Add To cart via cookie
+            $('.add-to-cart-btn').click(function(e) {
+                e.preventDefault();
+
+                var product_id = $(this).closest('.product_data').find('.product_id').val();
+                var quantity = $(this).closest('.product_data').find('.quantity').val();
+
+
+                $.ajax({
+                    url: '{{ route('front.cart.store') }}',
+                    method: "POST",
+                    data: {
+                        'quantity': quantity,
+                        'product_id': product_id,
+                    },
+                    success: function(response) {
+                        cartload();
+                    },
+                });
+            });
+        });
+
+        function cartload() {
+            $.ajax({
+                url: '{{ route('front.cart.load') }}',
+                method: "GET",
+                success: function(response) {
+                    $('.cart-icon-wrap').html('');
+                    var parsed = jQuery.parseJSON(response)
+                    var value = parsed; //Single Data Viewing
+                    $('.cart-icon-wrap').append($('<span class="cart-icon"><i class="icon-handbag"></i></span><span id="cart-total" class="bigcounter">' + value[
+                        'totalcart'] + '</span>'));
+                }
+            });
+        }
     </script>
-@endpush
-
-
-@push('css')
-    <style>
-        /* product zoom css */
-        .pro-page .pro-image .larg-image a.long-img {
-            margin-bottom: 20px;
-        }
-
-        .pro-page .pro-image .larg-image a.long-img figure.zoom {
-            background-position: 50% 50%;
-            position: relative;
-            overflow: hidden;
-            cursor: crosshair;
-            margin-bottom: 0px;
-        }
-
-        .pro-page .pro-image .larg-image a.long-img figure.zoom img:hover {
-            opacity: 0;
-        }
-
-        .pro-page .pro-image .larg-image a.long-img figure.zoom img {
-            transition: opacity 0.5s;
-            display: block;
-            width: 100%;
-        }
-    </style>
 @endpush

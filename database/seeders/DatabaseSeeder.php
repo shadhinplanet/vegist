@@ -27,10 +27,10 @@ class DatabaseSeeder extends Seeder
 
         $this->call(SliderSeeder::class);
 
-        Product::factory(50)->create()->each(function ($product) {
-            for ($i = 0; $i < rand(3, 6); $i++) {
+        Product::factory(50)->create()->each(function($product){
+            for ($i=0; $i < rand(3,5) ; $i++) { 
                 Gallery::create([
-                    'name' => 'https://source.unsplash.com/random/250x250/?fruits,drinks&' . rand(2, 421342),
+                    'name' => 'https://source.unsplash.com/random/550x350/?fruits,drinks&'.rand(2,421342),
                     'product_id' => $product->id
                 ]);
             }
