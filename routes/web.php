@@ -18,9 +18,14 @@ Route::as('front.')->group(function () {
 
     // add to cart
     Route::post('add-to-cart', [CartController::class, 'addToCart'])->name('cart.store');
+    // Load Cookie Data
     Route::get('load-cookie-data', [CartController::class, 'loadCookieData'])->name('cart.load');
-    Route::get('cart', [CartController::class, 'index'])->name('cart.index');
 
+    // Cart Page
+    Route::get('cart', [CartController::class, 'index'])->name('cart.index');
+    
+    // remove from cart
+    Route::delete('remove-from-cart', [CartController::class, 'removeCartItem'])->name('cart.remove');
 });
 
 

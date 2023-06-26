@@ -246,7 +246,7 @@
                 </p>
             </div>
             <ul class="cart-item-loop">
-              
+
             </ul>
             <ul class="subtotal-title-area">
                 <li class="subtotal-info">
@@ -257,7 +257,7 @@
                 </li>
                 <li class="mini-cart-btns">
                     <div class="cart-btns">
-                        <a href="cart.html" class="btn btn-style2">View cart</a>
+                        <a href="{{ route('front.cart.index') }}" class="btn btn-style2">View cart</a>
                         <a href="checkout-1.html" class="btn btn-style2">Checkout</a>
                     </div>
                 </li>
@@ -587,19 +587,23 @@
     <script src="{{ asset('frontend') }}/js/swiper.min.js"></script>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="{{ asset('backend') }}/assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- custom -->
     <script src="{{ asset('frontend') }}/js/custom.js"></script>
 
     <script>
         $(document).ready(function() {
+            cartload();
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
         });
-        
+
         function toast(message) {
             Toastify({
                 text: message,
@@ -616,6 +620,53 @@
                 onClick: function() {} // Callback after click
             }).showToast();
         }
+
+        function cartload() {
+            $.ajax({
+                url: '{{ route('front.cart.load') }}',
+                method: "GET",
+                success: function(response) {
+                    $('.bigcounter').html(response.totalcart)
+                    $('.cart-item-loop').html(response.html);
+                    $('.subtotal-price').html(response.subtotal);
+
+                }
+            });
+        }
+
+        // Remove cart item
+        $(document).on('click', '.remove-cart-item', function(e) {
+            e.preventDefault();
+
+            var product_id = $(this).data('id');
+
+            var data = {
+                "product_id": product_id,
+            };
+
+            Swal.fire({
+                html: '<div class="mt-3"><lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop" colors="primary:#f7b84b,secondary:#f06548" style="width:100px;height:100px"></lord-icon><div class="mt-4 pt-2 fs-15 mx-5"><h4>Warning!</h4><p class="text-muted mx-4 mb-0">Do want to delete?</p></div></div>',
+                showCancelButton: !0,
+                confirmButtonClass: "btn btn-primary w-xs me-2 mb-1",
+                confirmButtonText: "Yes, Delete It!",
+                cancelButtonClass: "btn btn-danger w-xs mb-1",
+                buttonsStyling: !1,
+                showCloseButton: false,
+            }).then((result) => {
+                if (result.value) {
+                    event.preventDefault();
+                    $.ajax({
+                        url: '{{ route('front.cart.remove') }}',
+                        type: 'DELETE',
+                        data: data,
+                        success: function(response) {
+                            window.location.reload();
+                        }
+                    });
+                }
+            })
+
+        });
     </script>
 
     @stack('js')

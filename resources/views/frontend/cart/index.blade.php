@@ -8,6 +8,8 @@
 
     @php $total = null @endphp
 
+
+
     <!-- cart start -->
     <section class="cart-page section-tb-padding">
         <div class="container">
@@ -47,10 +49,12 @@
                                         <div class="center">
                                             <div class="plus-minus">
                                                 <span>
-                                                    <a href="javascript:void(0)" data-id="{{ $cart->item_id }}" class="minus-btn text-black">-</a>
+                                                    <a href="javascript:void(0)" data-id="{{ $cart->item_id }}"
+                                                        class="minus-btn text-black">-</a>
                                                     <input type="text" class="quantity" name="name"
                                                         value="{{ $cart->item_quantity }}">
-                                                    <a href="javascript:void(0)" data-id="{{ $cart->item_id }}" class="plus-btn text-black">+</a>
+                                                    <a href="javascript:void(0)" data-id="{{ $cart->item_id }}"
+                                                        class="plus-btn text-black">+</a>
                                                 </span>
                                             </div>
 
@@ -59,8 +63,8 @@
                                     <div class="all-pro-price">
                                         <span
                                             class='item-total'>${{ number_format($cart->item_quantity * $cart->item_price, 2) }}</span>
-                                        <span class="ms-3"><a href="javascript:void(0)" class="text-danger"><i
-                                                    class="fa fa-remove"></i></a></span>
+                                        <span class="ms-3"><a href="javascript:void(0)" data-id="{{ $cart->item_id }}"
+                                                class="text-danger remove-cart-item"><i class="fa fa-remove"></i></a></span>
                                     </div>
                                 </div>
                             </div>
@@ -100,16 +104,15 @@
 
 @push('js')
     <script>
+        // Decrement
         $(document).on('click', '.minus-btn', function(e) {
             e.preventDefault();
             var el = $(this).closest('.cart-area');
             var product_id = $(this).data('id');
             updateCart('minus', el, product_id);
-
-
-
-
         });
+
+        // Increment
         $(document).on('click', '.plus-btn', function(e) {
             e.preventDefault();
             var el = $(this).closest('.cart-area');
@@ -117,9 +120,11 @@
             updateCart('plus', el, product_id);
 
         });
+       
 
+        // Update Cart
         function updateCart(method, el, product_id) {
-            
+
             // Item details
             var quantity = el.find('.quantity').val();
             var price = parseFloat(el.find('.cart-pro-price').html().replace(

@@ -74,6 +74,38 @@ class CartController extends Controller
         }
     }
 
+    // Remove from cart
+    public function removeCartItem(Request $request)
+    {
+        $prod_id = $request->input('product_id');
+
+      
+
+        $cookie_data = stripslashes(Cookie::get('shopping_cart'));
+        $cart_data = json_decode($cookie_data, true);
+
+        $item_id_list = array_column($cart_data, 'item_id');
+        $prod_id_is_there = $prod_id;
+
+        if(in_array($prod_id_is_there, $item_id_list))
+        {
+            
+            foreach($cart_data as $keys => $values)
+            {
+                if($cart_data[$keys]["item_id"] == $prod_id)
+                {
+                    // unset($cart_data[$keys]);
+                    $new = array_splice($cart_data,$keys,1);
+                    $item_data = json_encode($cart_data);
+                    $minutes = 60;
+                    Cookie::queue(Cookie::make('shopping_cart', $item_data, $minutes));
+                    return response()->json(['message'=>'Item Removed from Cart']);
+                }
+            }
+        }
+    }
+
+
 
     public function loadCookieData()
     {
@@ -102,7 +134,7 @@ class CartController extends Controller
                             <span class="price-box">$' . $item->item_price . ' USD</span>
                         </div>
                         <div class="delete-item-cart">
-                            <a href="javascript:void(0)"><i class="icon-trash icons"></i></a>
+                            <a href="javascript:void(0)" class="remove-cart-item" data-id="'.$item->item_id.'"><i class="icon-trash icons"></i></a>
                         </div>
                     </div>
                 </div>

@@ -299,7 +299,6 @@
                         'product_id': product_id,
                     },
                     success: function(response) {
-                        console.log(response);
                         toast(response.message);
                         cartload();
                     },
@@ -307,19 +306,6 @@
             });
         });
 
-        function cartload() {
-            $.ajax({
-                url: '{{ route('front.cart.load') }}',
-                method: "GET",
-                success: function(response) {
-                    console.log(response);
-                    $('.bigcounter').html(response.totalcart)
-                    $('.cart-item-loop').html(response.html);
-                    $('.subtotal-price').html(response.subtotal);
-
-        
-                }
-            });
-        }
+       
     </script>
 @endpush
