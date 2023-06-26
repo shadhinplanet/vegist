@@ -34,6 +34,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend') }}/css/responsive.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend') }}/custom.css">
 
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
     @stack('css')
 
 </head>
@@ -107,8 +110,8 @@
                                         </li>
                                         <li>
                                             <a href="javascript:void(0)">
-                                                <img class="img-fluid" src="{{ asset('frontend') }}/image/c-icon8.png"
-                                                    alt="">
+                                                <img class="img-fluid"
+                                                    src="{{ asset('frontend') }}/image/c-icon8.png" alt="">
                                                 <span class="cur-name">USD</span>
                                             </a>
                                         </li>
@@ -214,11 +217,11 @@
                                     <li class="side-wrap cart-wrap">
                                         <div class="shopping-widget">
                                             <div class="shopping-cart">
-                                               
+
                                                 <a href="javascript:void(0)" class="cart-count">
                                                     <span class="cart-icon-wrap">
                                                         <span class="cart-icon"><i class="icon-handbag"></i></span>
-                                                        <span id="cart-total" class="bigcounter">5</span>
+                                                        <span id="cart-total" class="bigcounter">0</span>
                                                     </span>
                                                 </a>
                                             </div>
@@ -238,91 +241,12 @@
             <div class="cart-item-title">
                 <p>
                     <span class="cart-count-desc">There are</span>
-                    <span class="cart-count-item bigcounter">4</span>
+                    <span class="cart-count-item bigcounter">0</span>
                     <span class="cart-count-desc">Products</span>
                 </p>
             </div>
             <ul class="cart-item-loop">
-                <li class="cart-item">
-                    <div class="cart-img">
-                        <a href="product.html">
-                            <img src="{{ asset('frontend') }}/image/cart-img.jpg" alt="cart-image"
-                                class="img-fluid">
-                        </a>
-                    </div>
-                    <div class="cart-title">
-                        <h6><a href="product.html">Fresh apple 5kg</a></h6>
-                        <div class="cart-pro-info">
-                            <div class="cart-qty-price">
-                                <span class="quantity">1 x </span>
-                                <span class="price-box">$250.00 USD</span>
-                            </div>
-                            <div class="delete-item-cart">
-                                <a href="empty-cart.html"><i class="icon-trash icons"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="cart-item">
-                    <div class="cart-img">
-                        <a href="product.html">
-                            <img src="{{ asset('frontend') }}/image/cart-img02.jpg" alt="cart-image"
-                                class="img-fluid">
-                        </a>
-                    </div>
-                    <div class="cart-title">
-                        <h6><a href="product.html">Natural grassbean 4kg</a></h6>
-                        <div class="cart-pro-info">
-                            <div class="cart-qty-price">
-                                <span class="quantity">1 x </span>
-                                <span class="price-box">$300.00 USD</span>
-                            </div>
-                            <div class="delete-item-cart">
-                                <a href="empty-cart.html"><i class="icon-trash icons"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="cart-item">
-                    <div class="cart-img">
-                        <a href="product.html">
-                            <img src="{{ asset('frontend') }}/image/cart-img03.jpg" alt="cart-image"
-                                class="img-fluid">
-                        </a>
-                    </div>
-                    <div class="cart-title">
-                        <h6><a href="product.html">Organic coconut juice 5ltr</a></h6>
-                        <div class="cart-pro-info">
-                            <div class="cart-qty-price">
-                                <span class="quantity">1 x </span>
-                                <span class="price-box">$250.00 USD</span>
-                            </div>
-                            <div class="delete-item-cart">
-                                <a href="empty-cart.html"><i class="icon-trash icons"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="cart-item">
-                    <div class="cart-img">
-                        <a href="product.html">
-                            <img src="{{ asset('frontend') }}/image/cart-img04.jpg" alt="cart-image"
-                                class="img-fluid">
-                        </a>
-                    </div>
-                    <div class="cart-title">
-                        <h6><a href="product.html">Orange juice 5ltr</a></h6>
-                        <div class="cart-pro-info">
-                            <div class="cart-qty-price">
-                                <span class="quantity">1 x </span>
-                                <span class="price-box">$350.00 USD</span>
-                            </div>
-                            <div class="delete-item-cart">
-                                <a href="empty-cart.html"><i class="icon-trash icons"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+              
             </ul>
             <ul class="subtotal-title-area">
                 <li class="subtotal-info">
@@ -661,6 +585,9 @@
     <script src="{{ asset('frontend') }}/js/owl.carousel.min.js"></script>
     <!-- swiper -->
     <script src="{{ asset('frontend') }}/js/swiper.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
     <!-- custom -->
     <script src="{{ asset('frontend') }}/js/custom.js"></script>
 
@@ -672,6 +599,23 @@
                 }
             });
         });
+        
+        function toast(message) {
+            Toastify({
+                text: message,
+                duration: 3000,
+                // destination: "https://github.com/apvarun/toastify-js",
+                newWindow: true,
+                close: false,
+                gravity: "bottom", // `top` or `bottom`
+                position: "right", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: {
+                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                },
+                onClick: function() {} // Callback after click
+            }).showToast();
+        }
     </script>
 
     @stack('js')
