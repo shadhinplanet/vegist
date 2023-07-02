@@ -9,17 +9,7 @@
     <!-- grid-list start -->
     <section class="section-tb-padding">
         <div class="container">
-            <div class="row mb-3">
-                <div class="col-12">
-                    <div class="grid-list-banner" style="background-image: url({{ asset('frontend/image/slider17.jpg') }});">
-                        <div class="grid-banner-content">
-                            <h4>Bestseller</h4>
-                            <p>Praesent dapibus, neque id cursus Ucibus, tortor neque egestas augue, eu vulputate magna eros
-                                eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, facilisis luc...</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-12">
                     <div class="all-filter">
@@ -237,386 +227,15 @@
 
                     <div class="grid-list-area">
                         <div class="grid-list-select">
-                            {{-- <ul class="grid-list">
-                            <li class="colloction-icn"><a href="grid-list-2.html"><i class="ti-layout-list-thumb"></i></a></li>
-                            <li class="colloction-icn"><a href="grid-list-3.html"><i class="ti-layout-grid2"></i></a></li>
-                            <li class="colloction-icn three-grid"><a href="grid-list.html" class="active"><i class="ti-layout-grid3"></i></a></li>
-                            <li class="colloction-icn four-grid"><a href="grid-list-4.html"><i class="ti-layout-grid4"></i></a></li>
-                        </ul> --}}
-                            {{-- <ul class="grid-list-selector">
-                            <li>
-                                <label>Sort by</label>
-                                <select>
-                                    <option>Featured</option>
-                                    <option>Best selling</option>
-                                    <option>Alphabetically,A-Z</option>
-                                    <option>Alphabetically,Z-A</option>
-                                    <option>Price, low to high</option>
-                                    <option>Price, high to low</option>
-                                    <option>Date new to old</option>
-                                    <option>Date old to new</option>
-                                </select>
-                            </li>
-                        </ul> --}}
+
                         </div>
                         <div class="grid-pro">
                             <ul class="grid-product">
                                 @foreach ($products as $product)
                                     <li class="grid-items">
-                                       <x-frontend.product-item :product="$product"/>
+                                        <x-frontend.product-item :product="$product" />
                                     </li>
-
-
-                                
                                 @endforeach
-
-                                {{-- <li class="grid-items">
-                                <div class="tred-pro">
-                                    <div class="tr-pro-img">
-                                        <a href="product.html">
-                                            <img class="img-fluid" src="image/pro/pro-img-2.jpg" alt="pro-img1">
-                                            <img class="img-fluid additional-image" src="image/pro/pro-img-02.jpg" alt="additional image">
-                                        </a>
-                                    </div>
-                                    <div class="Pro-lable">
-                                        <span class="p-text">New</span>
-                                    </div>
-                                    <div class="pro-icn">
-                                        <a href="wishlist.html" class="w-c-q-icn"><i class="fa fa-heart"></i></a>
-                                        <a href="cart.html" class="w-c-q-icn"><i class="fa fa-shopping-bag"></i></a>
-                                        <a href="javascript:void(0)"  class="w-c-q-icn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-eye"></i></a>
-                                    </div>
-                                </div>
-                                <div class="caption">
-                                    <h3><a href="product.html">Fresh & healty food</a></h3>
-                                    <div class="rating">
-                                        <i class="fa fa-star e-star"></i>
-                                        <i class="fa fa-star e-star"></i>
-                                        <i class="fa fa-star e-star"></i>
-                                        <i class="fa fa-star e-star"></i>
-                                        <i class="fa fa-star e-star"></i>
-                                    </div>
-                                    <div class="pro-price">
-                                        <span class="new-price">$126.00 USD</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="grid-items">
-                                <div class="tred-pro">
-                                    <div class="tr-pro-img">
-                                        <a href="product.html">
-                                            <img class="img-fluid" src="image/pro/pro-img-3.jpg" alt="pro-img1">
-                                            <img class="img-fluid additional-image" src="image/pro/pro-img-03.jpg" alt="additional image">
-                                        </a>
-                                    </div>
-                                    <div class="Pro-lable">
-                                        <span class="p-discount">-20%</span>
-                                    </div>
-                                    <div class="pro-icn">
-                                        <a href="wishlist.html" class="w-c-q-icn"><i class="fa fa-heart"></i></a>
-                                        <a href="cart.html" class="w-c-q-icn"><i class="fa fa-shopping-bag"></i></a>
-                                        <a href="javascript:void(0)"  class="w-c-q-icn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-eye"></i></a>
-                                    </div>
-                                </div>
-                                <div class="caption">
-                                    <h3><a href="product.html">Fresh apple</a></h3>
-                                    <div class="rating">
-                                        <i class="fa fa-star c-star"></i>
-                                        <i class="fa fa-star c-star"></i>
-                                        <i class="fa fa-star c-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <div class="pro-price">
-                                        <span class="new-price">$130.00 USD</span>
-                                        <span class="old-price"><del>$150.00 USD</del></span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="grid-items">
-                                <div class="tred-pro">
-                                    <div class="tr-pro-img">
-                                        <a href="product.html">
-                                            <img class="img-fluid" src="image/pro/pro-img-4.jpg" alt="pro-img1">
-                                            <img class="img-fluid additional-image" src="image/pro/pro-img-04.jpg" alt="additional image">
-                                        </a>
-                                    </div>
-                                    <div class="Pro-lable">
-                                        <span class="p-text">New</span>
-                                    </div>
-                                    <div class="pro-icn">
-                                        <a href="wishlist.html" class="w-c-q-icn"><i class="fa fa-heart"></i></a>
-                                        <a href="cart.html" class="w-c-q-icn"><i class="fa fa-shopping-bag"></i></a>
-                                        <a href="javascript:void(0)"  class="w-c-q-icn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-eye"></i></a>
-                                    </div>
-                                </div>
-                                <div class="caption">
-                                    <h3><a href="product.html">Fresh litchi 100% organic</a></h3>
-                                    <div class="rating">
-                                        <i class="fa fa-star e-star"></i>
-                                        <i class="fa fa-star e-star"></i>
-                                        <i class="fa fa-star e-star"></i>
-                                        <i class="fa fa-star e-star"></i>
-                                        <i class="fa fa-star e-star"></i>
-                                    </div>
-                                    <div class="pro-price">
-                                        <span class="new-price">$117.00 USD</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="grid-items">
-                                <div class="tred-pro">
-                                    <div class="tr-pro-img">
-                                        <a href="product.html">
-                                            <img class="img-fluid" src="image/pro/pro-img-5.jpg" alt="pro-img1">
-                                            <img class="img-fluid additional-image" src="image/pro/pro-img-05.jpg" alt="additional image">
-                                        </a>
-                                    </div>
-                                    <div class="Pro-lable">
-                                        <span class="p-discount">-12%</span>
-                                    </div>
-                                    <div class="pro-icn">
-                                        <a href="wishlist.html" class="w-c-q-icn"><i class="fa fa-heart"></i></a>
-                                        <a href="cart.html" class="w-c-q-icn"><i class="fa fa-shopping-bag"></i></a>
-                                        <a href="javascript:void(0)"  class="w-c-q-icn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-eye"></i></a>
-                                    </div>
-                                </div>
-                                <div class="caption">
-                                    <h3><a href="product.html">Vegetable tomato fresh</a></h3>
-                                    <div class="rating">
-                                        <i class="fa fa-star b-star"></i>
-                                        <i class="fa fa-star b-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <div class="pro-price">
-                                        <span class="new-price">$133.00 USD</span>
-                                        <span class="old-price"><del>$145.00 USD</del></span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="grid-items">
-                                <div class="tred-pro">
-                                    <div class="tr-pro-img">
-                                        <a href="product.html">
-                                            <img class="img-fluid" src="image/pro/pro-img-6.jpg" alt="pro-img1">
-                                            <img class="img-fluid additional-image" src="image/pro/pro-img-06.jpg" alt="additional image">
-                                        </a>
-                                    </div>
-                                    <div class="Pro-lable">
-                                        <span class="p-discount">-21%</span>
-                                    </div>
-                                    <div class="pro-icn">
-                                        <a href="wishlist.html" class="w-c-q-icn"><i class="fa fa-heart"></i></a>
-                                        <a href="cart.html" class="w-c-q-icn"><i class="fa fa-shopping-bag"></i></a>
-                                        <a href="javascript:void(0)"  class="w-c-q-icn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-eye"></i></a>
-                                    </div>
-                                </div>
-                                <div class="caption">
-                                    <h3><a href="product.html">Natural grassbean</a></h3>
-                                    <div class="rating">
-                                        <i class="fa fa-star c-star"></i>
-                                        <i class="fa fa-star c-star"></i>
-                                        <i class="fa fa-star c-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <div class="pro-price">
-                                        <span class="new-price">$139.00 USD</span>
-                                        <span class="old-price"><del>$160.00 USD</del></span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="grid-items">
-                                <div class="tred-pro">
-                                    <div class="tr-pro-img">
-                                        <a href="product.html">
-                                            <img class="img-fluid" src="image/pro/pro-img-7.jpg" alt="pro-img1">
-                                            <img class="img-fluid additional-image" src="image/pro/pro-img-07.jpg" alt="additional image">
-                                        </a>
-                                    </div>
-                                    <div class="Pro-lable">
-                                        <span class="p-discount">-10%</span>
-                                    </div>
-                                    <div class="pro-icn">
-                                        <a href="wishlist.html" class="w-c-q-icn"><i class="fa fa-heart"></i></a>
-                                        <a href="cart.html" class="w-c-q-icn"><i class="fa fa-shopping-bag"></i></a>
-                                        <a href="javascript:void(0)"  class="w-c-q-icn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-eye"></i></a>
-                                    </div>
-                                </div>
-                                <div class="caption">
-                                    <h3><a href="product.html">Fresh dryed almod (50gm)</a></h3>
-                                    <div class="rating">
-                                        <i class="fa fa-star e-star"></i>
-                                        <i class="fa fa-star e-star"></i>
-                                        <i class="fa fa-star e-star"></i>
-                                        <i class="fa fa-star e-star"></i>
-                                        <i class="fa fa-star e-star"></i>
-                                    </div>
-                                    <div class="pro-price">
-                                        <span class="new-price">$580.00 USD</span>
-                                        <span class="old-price"><del>$590.00 USD</del></span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="grid-items">
-                                <div class="tred-pro">
-                                    <div class="tr-pro-img">
-                                        <a href="product.html">
-                                            <img class="img-fluid" src="image/pro/pro-img-8.jpg" alt="pro-img1">
-                                            <img class="img-fluid additional-image" src="image/pro/pro-img-08.jpg" alt="additional image">
-                                        </a>
-                                    </div>
-                                    <div class="Pro-lable">
-                                        <span class="p-text">New</span>
-                                    </div>
-                                    <div class="pro-icn">
-                                        <a href="wishlist.html" class="w-c-q-icn"><i class="fa fa-heart"></i></a>
-                                        <a href="cart.html" class="w-c-q-icn"><i class="fa fa-shopping-bag"></i></a>
-                                        <a href="javascript:void(0)"  class="w-c-q-icn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-eye"></i></a>
-                                    </div>
-                                </div>
-                                <div class="caption">
-                                    <h3><a href="product.html">Orange juice (5ltr)</a></h3>
-                                    <div class="rating">
-                                        <i class="fa fa-star b-star"></i>
-                                        <i class="fa fa-star b-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <div class="pro-price">
-                                        <span class="new-price">$93.00 USD</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="grid-items">
-                                <div class="tred-pro">
-                                    <div class="tr-pro-img">
-                                        <a href="product.html">
-                                            <img class="img-fluid" src="image/pro/pro-img-9.jpg" alt="pro-img1">
-                                            <img class="img-fluid additional-image" src="image/pro/pro-img-09.jpg" alt="additional image">
-                                        </a>
-                                    </div>
-                                    <div class="Pro-lable">
-                                        <span class="p-discount">-12%</span>
-                                    </div>
-                                    <div class="pro-icn">
-                                        <a href="wishlist.html" class="w-c-q-icn"><i class="fa fa-heart"></i></a>
-                                        <a href="cart.html" class="w-c-q-icn"><i class="fa fa-shopping-bag"></i></a>
-                                        <a href="javascript:void(0)"  class="w-c-q-icn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-eye"></i></a>
-                                    </div>
-                                </div>
-                                <div class="caption">
-                                    <h3><a href="product.html">Organic coconet (5ltr) juice</a></h3>
-                                    <div class="rating">
-                                        <i class="fa fa-star d-star"></i>
-                                        <i class="fa fa-star d-star"></i>
-                                        <i class="fa fa-star d-star"></i>
-                                        <i class="fa fa-star d-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <div class="pro-price">
-                                        <span class="new-price">$167.00 USD</span>
-                                        <span class="old-price"><del>$179.00 USD</del></span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="grid-items">
-                                <div class="tred-pro">
-                                    <div class="tr-pro-img">
-                                        <a href="product.html">
-                                            <img class="img-fluid" src="image/pro/pro-img-10.jpg" alt="pro-img1">
-                                            <img class="img-fluid additional-image" src="image/pro/pro-img-010.jpg" alt="additional image">
-                                        </a>
-                                    </div>
-                                    <div class="Pro-lable">
-                                        <span class="p-text">New</span>
-                                    </div>
-                                    <div class="pro-icn">
-                                        <a href="wishlist.html" class="w-c-q-icn"><i class="fa fa-heart"></i></a>
-                                        <a href="cart.html" class="w-c-q-icn"><i class="fa fa-shopping-bag"></i></a>
-                                        <a href="javascript:void(0)"  class="w-c-q-icn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-eye"></i></a>
-                                    </div>
-                                </div>
-                                <div class="caption">
-                                    <h3><a href="product.html">Shrimp jumbo (5Lb)</a></h3>
-                                    <div class="rating">
-                                        <i class="fa fa-star c-star"></i>
-                                        <i class="fa fa-star c-star"></i>
-                                        <i class="fa fa-star c-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <div class="pro-price">
-                                        <span class="new-price">$230.00 USD</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="grid-items">
-                                <div class="tred-pro">
-                                    <div class="tr-pro-img">
-                                        <a href="product.html">
-                                            <img class="img-fluid" src="image/pro/pro-img-11.jpg" alt="pro-img1">
-                                            <img class="img-fluid additional-image" src="image/pro/pro-img-011.jpg" alt="additional image">
-                                        </a>
-                                    </div>
-                                    <div class="Pro-lable">
-                                        <span class="p-text">New</span>
-                                    </div>
-                                    <div class="pro-icn">
-                                        <a href="wishlist.html" class="w-c-q-icn"><i class="fa fa-heart"></i></a>
-                                        <a href="cart.html" class="w-c-q-icn"><i class="fa fa-shopping-bag"></i></a>
-                                        <a href="javascript:void(0)"  class="w-c-q-icn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-eye"></i></a>
-                                    </div>
-                                </div>
-                                <div class="caption">
-                                    <h3><a href="product.html">Sp.red fresh guava</a></h3>
-                                    <div class="rating">
-                                        <i class="fa fa-star d-star"></i>
-                                        <i class="fa fa-star d-star"></i>
-                                        <i class="fa fa-star d-star"></i>
-                                        <i class="fa fa-star d-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <div class="pro-price">
-                                        <span class="new-price">$45.00 USD</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="grid-items">
-                                <div class="tred-pro">
-                                    <div class="tr-pro-img">
-                                        <a href="product.html">
-                                            <img class="img-fluid" src="image/pro/pro-img-12.jpg" alt="pro-img1">
-                                            <img class="img-fluid additional-image" src="image/pro/pro-img-012.jpg" alt="additional image">
-                                        </a>
-                                    </div>
-                                    <div class="Pro-lable">
-                                        <span class="p-discount">-25%</span>
-                                    </div>
-                                    <div class="pro-icn">
-                                        <a href="wishlist.html" class="w-c-q-icn"><i class="fa fa-heart"></i></a>
-                                        <a href="cart.html" class="w-c-q-icn"><i class="fa fa-shopping-bag"></i></a>
-                                        <a href="javascript:void(0)"  class="w-c-q-icn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-eye"></i></a>
-                                    </div>
-                                </div>
-                                <div class="caption">
-                                    <h3><a href="product.html">Fresh mussel (500g)</a></h3>
-                                    <div class="rating">
-                                        <i class="fa fa-star d-star"></i>
-                                        <i class="fa fa-star d-star"></i>
-                                        <i class="fa fa-star d-star"></i>
-                                        <i class="fa fa-star d-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <div class="pro-price">
-                                        <span class="new-price">$245.00 USD</span>
-                                        <span class="old-price"><del>$270.00 USD</del></span>
-                                    </div>
-                                </div>
-                            </li> --}}
                             </ul>
                         </div>
                     </div>
@@ -638,7 +257,131 @@
     <!-- grid-list start -->
 
 
+    <!-- quick veiw start -->
+    <section class="quick-view">
+        <div class="modal fade" id="product-quickview-modal" tabindex="-1" aria-labelledby="product-quickview-Label"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            Product quickview
+                        </h5>
+                        <a href="javascript:void(0)" data-bs-dismiss="modal" aria-label="Close"><i
+                                class="ion-close-round"></i></a>
+                    </div>
+                    <div class="quick-veiw-area">
+                        <div class="quick-image">
+                            <div class="tab-content">
+                                @foreach ($product->gallery as $key => $image)
+                                    <div class="tab-pane fade {{ $key == 0 ? 'show active' : '' }}"
+                                        id="image-{{ $image->id }}">
+                                        <a href="javascript:void(0)" class="long-img">
+                                            <img src="{{ getAssetUrl($image->name, 'uploads/products') }}"
+                                                class="img-fluid" alt="{{ $image->name }}">
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </div>
+                            <ul class="nav nav-tabs quick-slider owl-carousel owl-theme">
+                                @foreach ($product->gallery as $key => $image)
+                                    <li class="nav-item items">
+                                        <a class="nav-link " data-bs-toggle="tab" href="#image-{{ $image->id }}"><img
+                                                src="{{ getAssetUrl($image->name, 'uploads/products') }}"
+                                                class="img-fluid" alt="{{ $image->name }}"></a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <div class="quick-caption">
+                            <h4 id="modal-product-title"></h4>
+                            <div class="quick-price">
+                                <span class="new-price">$<span id="modal-product-price"></span> USD</span>
+                            </div>
+                            <div class="quick-rating">
+                                <i class="fa fa-star c-star"></i>
+                                <i class="fa fa-star c-star"></i>
+                                <i class="fa fa-star c-star"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                            </div>
+                            <div class="pro-description">
+                                <p id="modal-product-excerpt"></p>
+                            </div>
 
+                            <div class="plus-minus">
+                                <span>
+                                    <a href="javascript:void(0)" class="minus-btn text-black">-</a>
+                                    <input type="text" name="name" value="1" class="quantity">
+                                    <a href="javascript:void(0)" class="plus-btn text-black">+</a>
+                                </span>
+                                <a href="wishlist.html" class="quick-wishlist"><i class="fa fa-heart"></i></a>
+                                <input type="hidden" name="name" value="" class="product_id">
+                                <a href="javascript:void(0)" class="quick-cart add-to-cart-btn"><i
+                                        class="fa fa-shopping-bag"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- quick veiw end -->
 
 
 @endsection
+
+@push('css')
+    <style>
+        .grid-list-area .grid-pro ul.grid-product li.grid-items {
+            width: calc(50% - 30px);
+
+        }
+    </style>
+@endpush
+
+
+@push('js')
+    <script>
+
+function formatMoney(number) {
+    return number.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+
+        $('#product-quickview-modal').on('shown.bs.modal', function(e) {
+            var slug = $(e.relatedTarget).data('product');
+
+            $.ajax({
+                url: '{{ route('front.shop.ajax.single') }}',
+                method: "POST",
+                data: {
+                    'slug': slug,
+                },
+                success: function(response) {
+                    var product = response.product;
+                    $('#modal-product-title').html(product.title)
+                    $('#modal-product-excerpt').html(product.excerpt)
+                    $('#modal-product-price').html(formatMoney(product.price))
+                    $('.plus-minus .product_id').val(product.id)
+                },
+            });
+        });
+        $('#product-quickview-modal').on('hidden.bs.modal', function(e) {
+            $('#modal-product-title').html('')
+            $('#modal-product-excerpt').html('')
+            $('#modal-product-price').html('')
+            $('.plus-minus .product_id').val('')
+        })
+
+
+
+
+        $(document).on('click', '.add-to-cart-btn', function(e) {
+            e.preventDefault();
+            var quantity = $(this).closest('.quick-caption').find('.quantity').val();
+            var product_id = $(this).closest('.quick-caption').find('.product_id').val();
+            addToCart(product_id, quantity);
+        });
+    </script>
+@endpush

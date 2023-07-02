@@ -35,4 +35,13 @@ class PageController extends Controller
         return view('frontend.shop.single', compact('product'));
     }
 
+    // Single Product
+    public function singleAjaxProduct(Request $request) {
+        $product = Product::where('slug', $request->slug)->first();
+
+        return [
+            'product' => $product
+        ];
+    }
+
 }

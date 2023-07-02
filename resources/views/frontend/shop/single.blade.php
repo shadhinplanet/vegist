@@ -290,19 +290,8 @@
                 var product_id = $(this).closest('.product_data').find('.product_id').val();
                 var quantity = $(this).closest('.product_data').find('.quantity').val();
 
-
-                $.ajax({
-                    url: '{{ route('front.cart.store') }}',
-                    method: "POST",
-                    data: {
-                        'quantity': quantity,
-                        'product_id': product_id,
-                    },
-                    success: function(response) {
-                        toast(response.message);
-                        cartload();
-                    },
-                });
+                addToCart(product_id, quantity);
+               
             });
         });
 

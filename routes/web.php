@@ -16,6 +16,8 @@ Route::as('front.')->group(function () {
     Route::get('shop', [PageController::class, 'shop'])->name('shop');
     Route::get('product/{slug}', [PageController::class, 'singleProduct'])->name('shop.single');
 
+    Route::post('ajax/product', [PageController::class, 'singleAjaxProduct'])->name('shop.ajax.single');
+
     // add to cart
     Route::post('add-to-cart', [CartController::class, 'addToCart'])->name('cart.store');
     // Load Cookie Data

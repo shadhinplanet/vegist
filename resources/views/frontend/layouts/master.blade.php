@@ -634,6 +634,22 @@
             });
         }
 
+        // Add to cart
+        function addToCart(id, quantity) {
+            $.ajax({
+                url: '{{ route('front.cart.store') }}',
+                method: "POST",
+                data: {
+                    'quantity': quantity,
+                    'product_id': id,
+                },
+                success: function(response) {
+                    toast(response.message);
+                    cartload();
+                },
+            });
+        }
+
         // Remove cart item
         $(document).on('click', '.remove-cart-item', function(e) {
             e.preventDefault();
@@ -660,7 +676,9 @@
                         type: 'DELETE',
                         data: data,
                         success: function(response) {
-                            window.location.reload();
+                            toast('Item removed successfully');
+                            cartload();
+                            // window.location.reload();
                         }
                     });
                 }
