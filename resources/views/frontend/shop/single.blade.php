@@ -219,42 +219,7 @@
                         @foreach ($product->category->products as $item)
                             @if ($product->id != $item->id)
                                 <div class="items">
-                                    <div class="tred-pro">
-                                        <div class="tr-pro-img">
-                                            <a href="{{ route('front.shop.single', $item->slug) }}">
-                                                <img class="img-fluid"
-                                                    src="{{ count($item->gallery) > 0 ? getAssetUrl($item->gallery[0]->name, 'uploads/products') : '' }}"
-                                                    alt="{{ $item->title }}">
-                                                <img class="img-fluid additional-image"
-                                                    src="{{ count($item->gallery) > 1 ? getAssetUrl($item->gallery[1]->name, 'uploads/products') : '' }}"
-                                                    alt="{{ $item->title }}">
-                                            </a>
-                                        </div>
-                                        {!! productLabel($item) !!}
-                                        <div class="pro-icn">
-                                            <a href="wishlist.html" class="w-c-q-icn"><i class="fa fa-heart"></i></a>
-                                            <a href="cart.html" class="w-c-q-icn"><i class="fa fa-shopping-bag"></i></a>
-                                            <a href="javascript:void(0)" class="w-c-q-icn" data-bs-toggle="modal"
-                                                data-bs-target="#product-{{ $item->id }}-Modal"><i
-                                                    class="fa fa-eye"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="caption">
-                                        <h3><a
-                                                href="{{ route('front.shop.single', $item->slug) }}">{{ $item->title }}</a>
-                                        </h3>
-                                        <div class="rating">
-                                            <i class="fa fa-star c-star"></i>
-                                            <i class="fa fa-star c-star"></i>
-                                            <i class="fa fa-star c-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="pro-price">
-                                            <span class="new-price">${{ number_format($item->price, 2) }} USD</span>
-                                        </div>
-                                    </div>
-
+                                    <x-frontend.product-item :product="$item" />
                                 </div>
                             @endif
                         @endforeach
