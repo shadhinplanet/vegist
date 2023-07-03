@@ -24,6 +24,7 @@ class ProductController extends Controller
     public function create(Request $request)
     {
         if ($request->isMethod('POST')) {
+            
             $request->validate([
                 'title'        => 'required|string|max:255',
                 'slug'        => 'required|string|max:255',
@@ -71,7 +72,7 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         if ($request->isMethod('PUT')) {
-     
+            dd($request->all());
             $request->validate([
                 'title'        => 'required|string|max:255',
                 'slug'        => 'required|string|max:255',
