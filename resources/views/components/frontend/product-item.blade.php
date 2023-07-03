@@ -13,7 +13,7 @@
     {!! productLabel($product) !!}
     <div class="pro-icn">
         <a href="wishlist.html" class="w-c-q-icn"><i class="fa fa-heart"></i></a>
-        <a href="cart.html" class="w-c-q-icn"><i class="fa fa-shopping-bag"></i></a>
+        <a href="javascript:addToCart({{ $product->id }}, 1)" class="w-c-q-icn"><i class="fa fa-shopping-bag"></i></a>
         <a href="javascript:void(0)" class="w-c-q-icn" data-bs-toggle="modal"
             data-bs-target="#product-quickview-modal" data-product="{{ $product->slug }}"><i class="fa fa-eye"></i></a>
     </div>

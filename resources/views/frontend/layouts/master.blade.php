@@ -27,6 +27,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend') }}/css/owl.theme.default.min.css">
     <!-- swiper -->
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend') }}/css/swiper.min.css">
+    {{-- Slick Slider --}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/slick.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/slick-theme.css') }}" />
     <!-- animation -->
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend') }}/css/animate.css">
     <!-- style -->
@@ -36,6 +39,50 @@
 
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+
+    <style>
+        ul#modal-mini-images {
+            margin-top: 20px;
+        }
+
+        #modal-mini-images .slick-slide {
+            opacity: .4;
+        }
+
+        #modal-mini-images .slick-current {
+            opacity: 1;
+        }
+
+        #modal-mini-images button.slick-arrow {
+            border-radius: 50%;
+            z-index: 99;
+            left: -9px;
+            background: #fff;
+            width: 25px;
+            height: 25px;
+        }
+
+        .slick-prev:before,
+        .slick-next:before {
+            font-family: "fontAwesome";
+            color: #000;
+
+        }
+
+        .slick-prev:before {
+            content: "\f104"
+        }
+
+        .slick-next:before {
+            content: "\f105"
+        }
+
+        #modal-mini-images button.slick-arrow.slick-next {
+            left: auto;
+            right: -9px
+        }
+    </style>
 
     @stack('css')
 
@@ -103,8 +150,8 @@
                                         </li>
                                         <li>
                                             <a href="javascript:void(0)">
-                                                <img class="img-fluid" src="{{ asset('frontend') }}/image/c-icon7.png"
-                                                    alt="">
+                                                <img class="img-fluid"
+                                                    src="{{ asset('frontend') }}/image/c-icon7.png" alt="">
                                                 <span class="cur-name">SAR</span>
                                             </a>
                                         </li>
@@ -585,27 +632,13 @@
                     </div>
                     <div class="quick-veiw-area">
                         <div class="quick-image">
-                            <div class="tab-content">
-                                @foreach ($product->gallery as $key => $image)
-                                    <div class="tab-pane fade {{ $key == 0 ? 'show active' : '' }}"
-                                        id="image-{{ $image->id }}">
-                                        <a href="javascript:void(0)" class="long-img">
-                                            <img src="{{ getAssetUrl($image->name, 'uploads/products') }}"
-                                                class="img-fluid" alt="{{ $image->name }}">
-                                        </a>
-                                    </div>
-                                @endforeach
+                            <div class="" id="modal-main-images">
+
                             </div>
-                            <ul class="nav nav-tabs quick-slider owl-carousel owl-theme">
-                                @foreach ($product->gallery as $key => $image)
-                                    <li class="nav-item items">
-                                        <a class="nav-link " data-bs-toggle="tab"
-                                            href="#image-{{ $image->id }}"><img
-                                                src="{{ getAssetUrl($image->name, 'uploads/products') }}"
-                                                class="img-fluid" alt="{{ $image->name }}"></a>
-                                    </li>
-                                @endforeach
+                            <ul class="" id="modal-mini-images">
+
                             </ul>
+
                         </div>
                         <div class="quick-caption">
                             <h4 id="modal-product-title"></h4>
@@ -663,6 +696,8 @@
     <script src="{{ asset('backend') }}/assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script type="text/javascript" src="{{ asset('frontend/js/slick.min.js') }}"></script>
 
     <!-- custom -->
     <script src="{{ asset('frontend') }}/js/custom.js"></script>
@@ -766,7 +801,17 @@
         }
 
 
-        $('#product-quickview-modal').on('shown.bs.modal', function(e) {
+        function assetUrl(name, location = 'uploads') {
+            if (name.startsWith('http')) {
+                return name;
+            } else {
+                return '{{ URL::asset('location') }}' + '/' + name;
+            }
+        }
+
+
+        // Modal event
+        $('#product-quickview-modal').on('show.bs.modal', function(e) {
             var slug = $(e.relatedTarget).data('product');
 
             $.ajax({
@@ -777,6 +822,54 @@
                 },
                 success: function(response) {
                     var product = response.product;
+                    var gallery = product.gallery;
+                    var images = '';
+                    var bigImages = '';
+
+
+
+                    for (let index = 0; index < gallery.length; index++) {
+                        var name = gallery[index].name;
+                        var image = assetUrl(name);
+                        var active = '';
+                        if (index == 0) {
+                            active = 'show active';
+                        }
+
+                        images +=
+                            '<li class="nav-item items"><img src="' + image +
+                            '" class="img-fluid" alt="' +
+                            name + '"></li>';
+
+                        bigImages += '<img src="' + image +
+                            '"  class="img-fluid" alt="' + name + '">';
+
+                    }
+
+                    $('#modal-mini-images').html(images);
+                    $('#modal-main-images').html(bigImages);
+
+                    $('#modal-main-images').slick({
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        arrows: false,
+                        lazyLoad: 'ondemand',
+                        fade: true,
+                        asNavFor: '#modal-mini-images'
+                    });
+
+                    $('#modal-mini-images').slick({
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                        lazyLoad: 'ondemand',
+                        autoplay: true,
+                        asNavFor: '#modal-main-images',
+                        dots: true,
+                        centerMode: true,
+                        centerPadding: '0px',
+                        focusOnSelect: true
+                    });
+
                     $('#modal-product-title').html(product.title)
                     $('#modal-product-excerpt').html(product.excerpt)
                     $('#modal-product-price').html(formatMoney(product.price))
@@ -789,6 +882,11 @@
             $('#modal-product-excerpt').html('')
             $('#modal-product-price').html('')
             $('.plus-minus .product_id').val('')
+            $('#modal-main-images').slick('unslick');
+            $('#modal-mini-images').slick('unslick');
+            $('#modal-mini-images').html('');
+            $('#modal-main-images').html('');
+
         })
 
 

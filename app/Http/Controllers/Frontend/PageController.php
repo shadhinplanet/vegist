@@ -37,7 +37,7 @@ class PageController extends Controller
 
     // Single Product
     public function singleAjaxProduct(Request $request) {
-        $product = Product::where('slug', $request->slug)->first();
+        $product = Product::with('gallery')->where('slug', $request->slug)->first();
 
         return [
             'product' => $product
