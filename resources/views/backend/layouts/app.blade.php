@@ -21,7 +21,7 @@
     <link href="{{ asset('backend') }}/assets/css/app.min.css" rel="stylesheet" type="text/css" />
     <!-- custom Css-->
     <link href="{{ asset('backend') }}/assets/css/custom.min.css" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('backend') }}/assets/css/custom.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('backend') }}/assets/css/custom.css?ts={{ time() }}" rel="stylesheet" type="text/css" />
 
     <!-- Filepond stylesheet -->
     <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">

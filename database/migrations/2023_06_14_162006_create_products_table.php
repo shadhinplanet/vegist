@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug');
             $table->text('excerpt')->nullable();
             $table->longText('description')->nullable();
+            $table->text('option')->nullable();
             $table->foreignId('category_id');
             $table->float('price');
             $table->timestamps();

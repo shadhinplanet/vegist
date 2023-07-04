@@ -88,26 +88,81 @@
                             <button type="button" id="addRows" class="btn-dark">Add Option</button>
                         </div>
 
-                        <div class="my-2">
+                        <div class="mb-2 mt-3">
                             <ul id="option_box">
-                                <li id="row0" class="option_item mb-3" style="display: none">
+                                <li id="row0" class="border border-success mb-3 option_item p-3 rounded"
+                                    style="display: none">
                                     <div class="d-flex justify-content-between gap-2" id="option_title_box">
-                                        <input type="text" value="" name="option[][]"
-                                            class="form-control option_title_input" placeholder="Title">
+                                        <input type="text" value="" class="form-control option_title_input"
+                                            placeholder="Title">
 
                                     </div>
                                     <ul class="my-2" id="option_item_box">
-                                        <li id="option_item_row0" style="display: none">
-                                            <input type="text" placeholder="Option" name="option[][]"
+                                        <li id="option_item_row0" style="display: none" class="single_item_box">
+                                            <input type="text" placeholder="Option"
                                                 class="form-control my-2 option_item_input">
-                                                <span id="option_item_remove_box"></span>
+                                            <span id="option_item_remove_box"></span>
                                         </li>
                                     </ul>
                                     <div class="text-end mt-2">
                                         <button type="button" class="btn-sm btn-info" id="addItemRows">Add Item</button>
                                     </div>
-
                                 </li>
+
+                                @php
+                                    $options = $product->option ? json_decode($product->option, true) : '';
+                                @endphp
+
+                                @if ($options)
+
+                                    @foreach ($options as $mainkey => $option)
+                                        <li id="row{{ $mainkey }}"
+                                            class="border border-success mb-3 option_item p-3 rounded">
+                                            <div class="d-flex justify-content-between gap-2" id="option_title_box">
+                                                <input type="text" value="{{ $option[0] }}"
+                                                    name="option[{{ $mainkey }}][]"
+                                                    class="form-control option_title_input" placeholder="Title">
+                                                <button type="button" class="btn-sm btn-danger option-delete"
+                                                    data-id="{{ $mainkey }}"
+                                                    data-row="row{{ $mainkey }}">Remove</button>
+                                            </div>
+                                            <ul class="my-2" id="option_item_box">
+                                                <li id="option_item_row0" style="display: none" class="single_item_box">
+                                                    <input type="text" placeholder="Option"
+                                                        class="form-control my-2 option_item_input">
+                                                    <span id="option_item_remove_box"></span>
+                                                </li>
+                                                @foreach ($option as $key => $item)
+                                                    @if ($key != 0)
+                                                        <li id="option_item_row{{ $key }}"
+                                                            class="single_item_box">
+                                                            <input type="text" placeholder="Option"
+                                                                value="{{ $item }}"
+                                                                name="option[{{ $mainkey }}][{{ $key }}]"
+                                                                class="form-control my-2 option_item_input">
+                                                            <span id="option_item_remove_box">
+                                                                <button type="button"
+                                                                    class="btn-sm btn-danger option-item-delete"
+                                                                    data-parent="row{{ $mainkey }}"
+                                                                    data-row="option_item_row{{ $key }}"><i
+                                                                        class="ri-delete-back-2-fill fs-15"></i></button>
+                                                            </span>
+                                                        </li>
+                                                    @endif
+                                                @endforeach
+
+                                            </ul>
+                                            <div class="text-end mt-2">
+                                                <button type="button" class="btn-sm btn-info" id="addItemRows">Add
+                                                    Item</button>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                @endif
+
+
+
+
                             </ul>
                         </div>
 
@@ -149,6 +204,12 @@
 @endsection
 
 
+@push('css')
+    <style>
+
+    </style>
+@endpush
+
 @push('js')
     <script>
         $(document).ready(function() {
@@ -162,7 +223,7 @@
         $(function() {
             var $mainBox = $("#option_box"),
                 $firstRow = $("#row0").clone();
-            $idVal = 1;
+            $idVal = $('#option_box > li.option_item').length;
             $("#addRows").on('click', function() {
                 var copy = $firstRow.clone();
                 copy.hide();
@@ -197,31 +258,42 @@
 
             var $main_option_items = $("#option_item_box"),
                 $firstItem = $("#option_item_row0").clone();
-            $itemId = 1;
+
             $(document).on('click', '#addItemRows', function() {
+                var row = $(this).closest('.option_item').find('.option-delete').data('id');
+                var parentRow = $(this).closest('.option_item').find('.option-delete').data('row');
+
+                var len = $('#' + parentRow + ' .single_item_box').length;
+
 
                 var copy = $firstItem.clone();
                 copy.hide();
-                var newItemId = 'option_item_row' + $itemId;
+                var newItemId = 'option_item_row' + len;
                 copy.attr('id', newItemId);
 
-                var row = $(this).closest('.option_item').find('.option-delete').data('id');
-                var parentRow = $(this).closest('.option_item').find('.option-delete').data('row');
-                
-                copy.find('.option_item_input').attr('name', 'option[' + row + ']['+$itemId+']');
+
+
+                copy.find('.option_item_input').attr('name', 'option[' + row + '][' + len + ']');
 
                 copy.children('#option_item_remove_box').append(
-                    '<button type="button" class="btn-sm btn-danger option-item-delete" data-row="' +
+                    '<button type="button" class="btn-sm btn-danger option-item-delete" data-parent="'+parentRow+'" data-row="' +
                     newItemId +
-                    '">Remove</button>');
-                $itemId += 1;
-
-               
+                    '"><i class="ri-delete-back-2-fill fs-15"></i></button>');
 
                 setTimeout(() => {
                     copy.slideDown();
                 }, 50);
-                $('#'+parentRow+' #option_item_box').append(copy);
+                $('#' + parentRow + ' #option_item_box').append(copy);
+            });
+
+
+            // Remove option item Row
+            $(document).on('click', '.option-item-delete', function() {
+                var row = $(this).data('row');
+                var parentRow = $(this).data('parent');
+                $('#'+parentRow+ " #" + row).hide('fast', function() {
+                    $('#'+parentRow+ " #" + row).remove();
+                });
             });
         });
     </script>

@@ -60,21 +60,26 @@
                             <span class="pro-details">Hurry up! only <span class="pro-number">7</span> products left in
                                 stock!</span>
                             <p>{{ $product->excerpt }}</p>
-                            {{-- <div class="pro-items">
-                                <span class="pro-size">Size:</span>
-                                <ul class="pro-wight">
-                                    <li><a href="javascript:void(0)" class="active">5KG</a></li>
-                                    <li><a href="javascript:void(0)">1KG</a></li>
-                                </ul>
-                            </div>
-                            <div class="product-color">
-                                <span class="color-label">Color:</span>
-                                <span class="color">
-                                    <a href="javascript:void(0)" class="active"><span></span></a>
-                                    <a href="javascript:void(0)"><span></span></a>
-                                    <a href="javascript:void(0)"><span></span></a>
-                                </span>
-                            </div> --}}
+
+                            @php
+                                $options = $product->option ? json_decode($product->option, true) : '';
+                            @endphp
+                            @if ($options)
+
+                                @foreach ($options as $option)
+                                    <div class="pro-items">
+                                        <span class="pro-size">{{ $option[0] }}:</span>
+                                        <ul class="pro-wight">
+                                            @foreach ($option as $key => $item)
+                                                @if ($key != 0)
+                                                    <li><a href="javascript:void(0)">{{ $item }}</a></li>
+                                                @endif
+                                            @endforeach
+
+                                        </ul>
+                                    </div>
+                                @endforeach
+                            @endif
                             <div class="pro-qty">
                                 <span class="qty">Quantity:</span>
                                 <div class="plus-minus">
@@ -256,10 +261,8 @@
                 var quantity = $(this).closest('.product_data').find('.quantity').val();
 
                 addToCart(product_id, quantity);
-               
+
             });
         });
-
-       
     </script>
 @endpush

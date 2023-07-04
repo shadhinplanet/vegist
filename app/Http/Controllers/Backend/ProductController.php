@@ -24,7 +24,7 @@ class ProductController extends Controller
     public function create(Request $request)
     {
         if ($request->isMethod('POST')) {
-            
+           
             $request->validate([
                 'title'        => 'required|string|max:255',
                 'slug'        => 'required|string|max:255',
@@ -35,12 +35,16 @@ class ProductController extends Controller
                 'gallery' => 'required',
             ]);
 
+            
+
+            $option = json_encode($request->option);
             $product = Product::create([
                 'title' => $request->title,
                 'slug' => $request->slug,
                 'price' => $request->price,
                 'excerpt' => $request->excerpt,
                 'description' => $request->description,
+                'option' => $option,
                 'category_id' => $request->category_id,
             ]);
 
@@ -72,7 +76,7 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         if ($request->isMethod('PUT')) {
-            dd($request->all());
+            
             $request->validate([
                 'title'        => 'required|string|max:255',
                 'slug'        => 'required|string|max:255',
@@ -82,6 +86,8 @@ class ProductController extends Controller
                 'description' => 'nullable',
                 'gallery' => 'nullable',
             ]);
+
+            $option = json_encode($request->option);
       
             $product->update([
                 'title' => $request->title,
@@ -89,6 +95,7 @@ class ProductController extends Controller
                 'price' => $request->price,
                 'excerpt' => $request->excerpt,
                 'description' => $request->description,
+                'option' => $option,
                 'category_id' => $request->category_id,
             ]);
 

@@ -11,6 +11,7 @@
         </a>
     </div>
     {!! productLabel($product) !!}
+    
     <div class="pro-icn">
         <a href="wishlist.html" class="w-c-q-icn"><i class="fa fa-heart"></i></a>
         <a href="javascript:addToCart({{ $product->id }}, 1)" class="w-c-q-icn"><i class="fa fa-shopping-bag"></i></a>

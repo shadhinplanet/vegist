@@ -4,3 +4,10 @@
     right: 2%;
     z-index: 9999999;
 }
+
+ul#option_item_box li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}

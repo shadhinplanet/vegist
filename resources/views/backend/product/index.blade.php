@@ -37,6 +37,9 @@
                         <td class="">{{ $product->category->name }}</td>
                         <td>
                             <div class="hstack gap-3 flex-wrap">
+                                <a target="_blank" href="{{ route('front.shop.single', $product->slug) }}" class="link-info fs-15"><i
+                                        class="ri-eye-line"></i></a>
+
                                 <a href="{{ route('product.edit', $product->id) }}" class="link-success fs-15"><i
                                         class="ri-edit-2-line"></i></a>
 
