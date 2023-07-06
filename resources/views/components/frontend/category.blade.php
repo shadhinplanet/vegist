@@ -20,7 +20,7 @@
                                         <span class="cat-title">{{ $category->name }}</span>
                                     </a>
                                 </div>
-                                <span class="cat-num">0 Items</span>
+                                <span class="cat-num">{{ count($category->products) }} Items</span>
                             </div>
                         </div>
                     @empty
