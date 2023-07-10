@@ -43,6 +43,13 @@
                                             </h4>
 
                                             <span class="cart-pro-price">${{ number_format($cart->item_price, 2) }}</span>
+                                            @if ($cart->item_options)
+                                                <br>
+                                                @foreach ($cart->item_options as $name => $option)
+                                                    <p><span><b>{{ $name }}:</b> {{ $option }}</span></p>
+                                                @endforeach
+                                            @endif
+
                                         </div>
                                     </div>
                                     <div class="qty-item">
@@ -120,7 +127,7 @@
             updateCart('plus', el, product_id);
 
         });
-       
+
 
         // Update Cart
         function updateCart(method, el, product_id) {

@@ -743,13 +743,14 @@
         }
 
         // Add to cart
-        function addToCart(id, quantity) {
+        function addToCart(id, quantity, options = {}) {
             $.ajax({
                 url: '{{ route('front.cart.store') }}',
                 method: "POST",
                 data: {
                     'quantity': quantity,
                     'product_id': id,
+                    'options' : options
                 },
                 success: function(response) {
                     toast(response.message);

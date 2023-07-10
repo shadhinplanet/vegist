@@ -26,8 +26,8 @@ class CartController extends Controller
     {
         $prod_id = $request->input('product_id');
         $quantity = $request->input('quantity');
-
-
+        $options = $request->input('options');
+     
         if (Cookie::get('shopping_cart')) {
             $cookie_data = stripslashes(Cookie::get('shopping_cart'));
             $cart_data = json_decode($cookie_data, true);
@@ -42,6 +42,7 @@ class CartController extends Controller
             foreach ($cart_data as $keys => $values) {
                 if ($cart_data[$keys]["item_id"] == $prod_id) {
                     $cart_data[$keys]["item_quantity"] = $quantity;
+                    $cart_data[$keys]["item_options"] = $options;
                     $item_data = json_encode($cart_data);
                     $minutes = 60;
                     Cookie::queue(Cookie::make('shopping_cart', $item_data, $minutes));
@@ -62,6 +63,7 @@ class CartController extends Controller
                     'item_slug' => $product->slug,
                     'item_quantity' => $quantity,
                     'item_price' => $priceval,
+                    'item_options' => $options,
                     'item_image' => $prod_image
                 );
                 $cart_data[] = $item_array;

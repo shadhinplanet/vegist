@@ -72,7 +72,9 @@
                                         <ul class="pro-wight">
                                             @foreach ($option as $key => $item)
                                                 @if ($key != 0)
-                                                    <li><a href="javascript:void(0)">{{ $item }}</a></li>
+                                                    <li><input type="radio" name="option_item['{{ $option[0] }}'][]"
+                                                            id="{{ $item }}" value="{{ $item }}" required><label
+                                                            for="{{ $item }}">{{ $item }}</label></li>
                                                 @endif
                                             @endforeach
 
@@ -260,7 +262,18 @@
                 var product_id = $(this).closest('.product_data').find('.product_id').val();
                 var quantity = $(this).closest('.product_data').find('.quantity').val();
 
-                addToCart(product_id, quantity);
+
+                var optionItemValues = {};
+
+                $('input[name^="option_item"]:checked').each(function(e) {
+                    var name = $(this).attr('name'); 
+                    var value = $(this).val(); 
+                    var matches = name.match(/option_item\['(.*)'\]\[\]/);
+                    var extractedName = matches[1];
+                    optionItemValues[extractedName] = value;
+                });
+
+                addToCart(product_id, quantity, optionItemValues);
 
             });
         });
