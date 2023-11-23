@@ -18,86 +18,15 @@
                             <a href="#category-filter" data-bs-toggle="collapse" class="filter-link"><span>Categories
                                 </span><i class="fa fa-angle-down"></i></a>
                             <ul class="all-option collapse" id="category-filter">
+
+                                @foreach ($categories as $category)
                                 <li class="grid-list-option">
                                     <input type="checkbox">
-                                    <a href="javascript:void(0)">Baker's rack <span class="grid-items">(4)</span></a>
+                                    <a href="javascript:void(0)">{{ $category->name }} <span class="grid-items">({{ count($category->products) }})</span></a>
                                 </li>
-                                <li class="grid-list-option">
-                                    <input type="checkbox">
-                                    <a href="javascript:void(0)">Bestseller<span class="grid-items">(6)</span></a>
-                                </li>
-                                <li class="grid-list-option">
-                                    <input type="checkbox">
-                                    <a href="javascript:void(0)">Breakfast <span class="grid-items">(8)</span></a>
-                                </li>
-                                <li class="grid-list-option">
-                                    <input type="checkbox">
-                                    <a href="javascript:void(0)">Dairy & chesse <span class="grid-items">(7)</span></a>
-                                </li>
-                                <li class="grid-list-option">
-                                    <input type="checkbox">
-                                    <a href="javascript:void(0)">Dairy & chesse <span class="grid-items">(3)</span></a>
-                                </li>
-                                <li class="grid-list-option">
-                                    <input type="checkbox">
-                                    <a href="javascript:void(0)">Deal collection <span class="grid-items">(10)</span></a>
-                                </li>
-                                <li class="grid-list-option">
-                                    <input type="checkbox">
-                                    <a href="javascript:void(0)">Dinner <span class="grid-items">(12)</span></a>
-                                </li>
-                                <li class="grid-list-option">
-                                    <input type="checkbox">
-                                    <a href="javascript:void(0)">Featured product <span class="grid-items">(11)</span></a>
-                                </li>
-                                <li class="grid-list-option">
-                                    <input type="checkbox">
-                                    <a href="javascript:void(0)">Fresh fruits <span class="grid-items">(16)</span></a>
-                                </li>
-                                <li class="grid-list-option">
-                                    <input type="checkbox">
-                                    <a href="javascript:void(0)">Fresh meat <span class="grid-items">(18)</span></a>
-                                </li>
-                                <li class="grid-list-option">
-                                    <input type="checkbox">
-                                    <a href="javascript:void(0)">Fresh vegetable <span class="grid-items">(16)</span></a>
-                                </li>
-                                <li class="grid-list-option">
-                                    <input type="checkbox">
-                                    <a href="javascript:void(0)">Green seafood <span class="grid-items">(12)</span></a>
-                                </li>
-                                <li class="grid-list-option">
-                                    <input type="checkbox">
-                                    <a href="javascript:void(0)">Lunch <span class="grid-items">(14)</span></a>
-                                </li>
-                                <li class="grid-list-option">
-                                    <input type="checkbox">
-                                    <a href="javascript:void(0)">New product <span class="grid-items">(20)</span></a>
-                                </li>
-                                <li class="grid-list-option">
-                                    <input type="checkbox">
-                                    <a href="javascript:void(0)">Organic dryfruit <span class="grid-items">(21)</span></a>
-                                </li>
-                                <li class="grid-list-option">
-                                    <input type="checkbox">
-                                    <a href="javascript:void(0)">Organic juice <span class="grid-items">(23)</span></a>
-                                </li>
-                                <li class="grid-list-option">
-                                    <input type="checkbox">
-                                    <a href="javascript:void(0)">Organic wine <span class="grid-items">(17)</span></a>
-                                </li>
-                                <li class="grid-list-option">
-                                    <input type="checkbox">
-                                    <a href="javascript:void(0)">Sea & fish <span class="grid-items">(1)</span></a>
-                                </li>
-                                <li class="grid-list-option">
-                                    <input type="checkbox">
-                                    <a href="javascript:void(0)">Special product <span class="grid-items">(5)</span></a>
-                                </li>
-                                <li class="grid-list-option">
-                                    <input type="checkbox">
-                                    <a href="javascript:void(0)">Starters <span class="grid-items">(9)</span></a>
-                                </li>
+                                @endforeach
+
+                               
                             </ul>
                         </div>
                         <div class="price-filter">

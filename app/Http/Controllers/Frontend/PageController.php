@@ -24,7 +24,8 @@ class PageController extends Controller
     public function shop()
     {
         $products = Product::latest()->paginate();
-        return view('frontend.shop.index', compact('products'));
+        $categories = Category::has('products')->get(['id', 'name']);
+        return view('frontend.shop.index', compact('products', 'categories'));
     }
 
 
